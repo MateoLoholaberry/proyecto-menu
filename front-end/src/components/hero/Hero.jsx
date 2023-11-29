@@ -5,24 +5,24 @@ import drinks from "../../assets/img/drinks.jpg";
 import salad from "../../assets/img/salad.jpg";
 
 export const Hero = () => {
-    const StyledCard = styled(Box)(({theme}) => ({
+    const StyledCard = styled(Box)(({ theme }) => ({
         display: "flex",
         justifyContent: "center",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
         backgroundSize: "cover",
-        [theme.breakpoints.up('md')]:{
+        [theme.breakpoints.up("md")]: {
             height: 400,
         },
-        [theme.breakpoints.down('md')]:{
+        [theme.breakpoints.down("md")]: {
             height: 200,
         },
-        cursor:'pointer',
-        "&:hover":{
-            opacity:0.8,
+        cursor: "pointer",
+        "&:hover": {
+            opacity: 0.8,
             boxSizing: "borderBox",
-            transition: "all 0.45s ease"
-        }
+            transition: "all 0.45s ease",
+        },
     }));
 
     const StyledTypography = styled(Typography)({
@@ -42,39 +42,37 @@ export const Hero = () => {
     });
 
     return (
-        <>
-            <Container>
-                <Grid container direction={"row"} spacing={2}>
-                    <Grid item xs={6} md={3}>
-                        <StyledCard sx={{ backgroundImage: `url(${burger})` }}>
-                            <StyledWrapper>
-                                <StyledTypography>Burgers</StyledTypography>
-                            </StyledWrapper>
-                        </StyledCard>
-                    </Grid>
-                    <Grid item xs={6} md={3}>
-                        <StyledCard sx={{ backgroundImage: `url(${meat})` }}>
-                            <StyledWrapper>
-                                <StyledTypography>Meat</StyledTypography>
-                            </StyledWrapper>
-                        </StyledCard>
-                    </Grid>
-                    <Grid item xs={6} md={3}>
-                        <StyledCard sx={{ backgroundImage: `url(${salad})` }}>
-                            <StyledWrapper>
-                                <StyledTypography>Salad</StyledTypography>
-                            </StyledWrapper>
-                        </StyledCard>
-                    </Grid>
-                    <Grid item xs={6} md={3}>
-                        <StyledCard sx={{ backgroundImage: `url(${drinks})` }}>
-                            <StyledWrapper>
-                                <StyledTypography>Drinks</StyledTypography>
-                            </StyledWrapper>
-                        </StyledCard>
-                    </Grid>
+        <Container>
+            <Grid container direction={"row"} spacing={2}>
+                <Grid item xs={6} md={3}>
+                    <StyledCard sx={{ backgroundImage: `url(${burger})` }}>
+                        <StyledWrapper>
+                            <StyledTypography>Burgers</StyledTypography>
+                        </StyledWrapper>
+                    </StyledCard>
                 </Grid>
-            </Container>
-        </>
+                <Grid item xs={6} md={3}>
+                    <StyledCard sx={{ backgroundImage: `url(${meat})` }}>
+                        <StyledWrapper>
+                            <StyledTypography>Meat</StyledTypography>
+                        </StyledWrapper>
+                    </StyledCard>
+                </Grid>
+                <Grid item xs={6} md={3}>
+                    <StyledCard sx={{ backgroundImage: `url(${salad})` }}>
+                        <StyledWrapper>
+                            <StyledTypography>Salad</StyledTypography>
+                        </StyledWrapper>
+                    </StyledCard>
+                </Grid>
+                <Grid item xs={6} md={3}>
+                    <StyledCard sx={{ backgroundImage: `url(${drinks})` }}>
+                        <StyledWrapper>
+                            <StyledTypography>Drinks</StyledTypography>
+                        </StyledWrapper>
+                    </StyledCard>
+                </Grid>
+            </Grid>
+        </Container>
     );
 };

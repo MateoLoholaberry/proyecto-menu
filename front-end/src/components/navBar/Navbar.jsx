@@ -43,7 +43,10 @@ export const Navbar = () => {
                         <Typography
                             variant="h4"
                             color={"tomato"}
-                            sx={{ fontFamily: "Splash, cursive", textAlign:{xs:"center", md:"start"} }}
+                            sx={{
+                                fontFamily: "Splash, cursive",
+                                textAlign: { xs: "center", md: "start" },
+                            }}
                         >
                             Codingstrade
                         </Typography>

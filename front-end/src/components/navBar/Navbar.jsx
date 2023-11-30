@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
     AppBar,
     Typography,
@@ -10,8 +10,10 @@ import {
     ListItem,
     List,
     ListItemButton,
+    Link,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import { Search } from "../search/Search";
 
 export const Navbar = () => {
     const StyledToolBar = styled(Toolbar)({
@@ -27,10 +29,10 @@ export const Navbar = () => {
     });
 
     const menuItems = [
-        { Name: "Home", Link: "#" },
-        { Name: "Recipes", Link: "#" },
-        { Name: "About Us", Link: "#" },
-        { Name: "Subscribe", Link: "#" },
+        { name: "Home", link: "/" },
+        { name: "Recetas", link: "/recipeList" },
+        { name: "Acerca de", link: "#" },
+        { name: "Contacto", link: "#" },
     ];
 
     const [openMenu, setOpenMenu] = useState(false);
@@ -40,16 +42,18 @@ export const Navbar = () => {
             <AppBar color="default" position="sticky" elevation={0}>
                 <StyledToolBar>
                     <Box flex={{ xs: 25, md: 1 }}>
-                        <Typography
-                            variant="h4"
-                            color={"tomato"}
-                            sx={{
-                                fontFamily: "Splash, cursive",
-                                textAlign: { xs: "center", md: "start" },
-                            }}
-                        >
-                            Codingstrade
-                        </Typography>
+                        <Link underline="none" href="/">
+                            <Typography
+                                variant="h4"
+                                color={"tomato"}
+                                sx={{
+                                    fontFamily: "Splash, cursive",
+                                    textAlign: { xs: "center", md: "start" },
+                                }}
+                            >
+                                La cocina de José
+                            </Typography>
+                        </Link>
                     </Box>
 
                     <MenuBox
@@ -57,20 +61,21 @@ export const Navbar = () => {
                         sx={{ display: { xs: "none", md: "flex" } }}
                     >
                         {menuItems.map((item) => (
-                            <Typography key={item.Name} variant="body2">
-                                {item.Name}
-                            </Typography>
+                            <Link
+                                key={item.name}
+                                href={item.link}
+                                underline="none"
+                                color={"gray"}
+                            >
+                                <Typography variant="body2">
+                                    {item.name}
+                                </Typography>
+                            </Link>
                         ))}
                     </MenuBox>
 
-                    <Box flex={1}>
-                        <TextField
-                            sx={{ display: { xs: "none", md: "flex" } }}
-                            fullWidth
-                            color="warning"
-                            label="Search"
-                            variant="standard"
-                        ></TextField>
+                    <Box flex={1} alignSelf={"start"}>
+                        <Search />
                         <MenuIcon
                             sx={{
                                 display: { xs: "flex", md: "none" },
@@ -90,8 +95,8 @@ export const Navbar = () => {
                     <List>
                         <ListItem>
                             {menuItems.map((item) => (
-                                <ListItemButton key={item.Name} variant="body2">
-                                    {item.Name}
+                                <ListItemButton key={item.name} variant="body2">
+                                    {item.name}
                                 </ListItemButton>
                             ))}
                         </ListItem>
@@ -116,7 +121,7 @@ export const Navbar = () => {
                 }}
             >
                 <Typography variant="h5" mr={3} align="center">
-                    Simple recepies made for coders
+                    Recetas artesanales
                 </Typography>
                 <Typography
                     variant="h5"
@@ -125,7 +130,7 @@ export const Navbar = () => {
                     align="center"
                     color={"tomato"}
                 >
-                    Simple recepies made for coders
+                    Hecho en casa
                 </Typography>
             </Box>
         </>

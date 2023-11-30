@@ -8,13 +8,12 @@ import {
     Link,
     Typography,
 } from "@mui/material";
-import React from "react";
 import burger from "../../assets/img/burger.jpg";
 
-export const PostsCard = ({ myDirection }) => {
+export const PostsCard = ({ myDirection, title, excerpt, blogHref, image }) => {
     return (
         <Box mt={3}>
-            <Link href="#" sx={{ textDecoration: "none" }}>
+            <Link href={blogHref} sx={{ textDecoration: "none" }}>
                 <Card>
                     <Box
                         sx={{
@@ -29,10 +28,9 @@ export const PostsCard = ({ myDirection }) => {
                         <CardMedia
                             component={"img"}
                             height="300"
-                            image={burger}
-                            alt="Burger image"
+                            image={image}
                             sx={{
-                                maxWidth: "500px",
+                                maxWidth: 400,
                                 cursor: "pointer",
                                 "&:hover": {
                                     opacity: 0.8,
@@ -43,18 +41,16 @@ export const PostsCard = ({ myDirection }) => {
                         ></CardMedia>
                         <CardContent>
                             <Typography
-                                variant="h4"
+                                variant="h5"
                                 gutterBottom
                                 align="center"
                             >
-                                Yummi Burger
+                                {title}
                             </Typography>
-                            <Typography variant="h5" color="text.secondary">
-                                Lorem ipsum dolor sit amet consectetur
-                                adipisicing elit. Sapiente culpa fugit harum,
-                                omnis, beatae facilis ab eius sint et quos.
+                            <Typography variant="h7" color="text.secondary">
+                                {excerpt}
                             </Typography>
-                            <CardActions>
+                            <CardActions sx={{ justifyContent: "end" }}>
                                 <Button size="small" sx={{ color: "tomato" }}>
                                     Share
                                 </Button>

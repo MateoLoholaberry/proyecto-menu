@@ -6,6 +6,8 @@ import { Main } from "./components/main/Main";
 import { Footer } from "./components/footer/Footer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { DetailsPage } from "./components/detailsPage/DetailsPage";
+import { CatBasedPost } from "./components/categoryList/catBasedPost";
+import { RecipeList } from "./components/recipeList/recipeList";
 
 export const App = () => {
     return (
@@ -14,7 +16,9 @@ export const App = () => {
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Main />} />
-                    <Route path="/details" element={<DetailsPage />} />
+                    <Route path="/details/:slug" element={<DetailsPage />} />
+                    <Route path="/category/:id" element={<CatBasedPost />} />
+                    <Route path="/recipeList/" element={<RecipeList />} />
                 </Routes>
             </BrowserRouter>
             <Footer />

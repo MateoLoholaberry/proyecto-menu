@@ -8,91 +8,71 @@ import {
     ListItemText,
     Typography,
 } from "@mui/material";
-import React from "react";
-import burger from "../../assets/img/burger1.jpg";
 import { Category } from "../categoryList/Category";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import CircleIcon from "@mui/icons-material/Circle";
+import { Suggestions } from "../suggestions/Suggestions";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 export const DetailsPage = () => {
+    const [blogDetails, setBlogDetails] = useState([]);
+    const [postIngridients, setPostIngridients] = useState("");
+
+    let { slug } = useParams();
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await axios.get(
+                    `${import.meta.env.VITE_API_URL}/api/blogs/${slug}`
+                );
+                setBlogDetails(res.data);
+                setPostIngridients(res.data.ingridients);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
     return (
         <Container>
             <Category />
             <Typography variant="h3" align="center" mt={4}>
-                Title of recipe
+                {blogDetails.title}
             </Typography>
             <Typography variant="body2" align="center" color={"GrayText"} p={2}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum
-                exercitationem minus aspernatur vero mollitia.
+                {blogDetails.excerpt}
             </Typography>
             <Typography variant="body1" align="center" m={2}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum
-                exercitationem minus aspernatur vero mollitia. Voluptates ipsum
-                neque id magni amet quam vitae tempora, distinctio ullam,
-                voluptate odit. Alias, fugiat pariatur!
+                {blogDetails.content}
             </Typography>
             <Box display={"flex"} justifyContent={"center"}>
                 <CardMedia
-                    sx={{ height: "500px", width: "500px" }}
+                    sx={{ maxHeight: "500px", maxWidth: "500px" }}
                     component={"img"}
-                    image={burger}
-                    alt="burger"
+                    image={blogDetails.image}
+                    alt={blogDetails.title}
                 />
             </Box>
-            <Typography variant="body1" align="center" m={2}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum
-                exercitationem minus aspernatur vero mollitia. Voluptates ipsum
-                neque id magni amet quam vitae tempora, distinctio ullam,
-                voluptate odit. Alias, fugiat pariatur!
-            </Typography>
             <Typography variant="h4" align="center" mt={4}>
                 Ingridients
             </Typography>
             <List>
-                <ListItemButton>
-                    <ListItemIcon>
-                        <ArrowForwardIosIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Meat" />
-                </ListItemButton>
-                <ListItemButton>
-                    <ListItemIcon>
-                        <ArrowForwardIosIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Cheese" />
-                </ListItemButton>
-                <ListItemButton>
-                    <ListItemIcon>
-                        <ArrowForwardIosIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Tomatoes" />
-                </ListItemButton>
-                <ListItemButton>
-                    <ListItemIcon>
-                        <ArrowForwardIosIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Lettuce" />
-                </ListItemButton>
-                <ListItemButton>
-                    <ListItemIcon>
-                        <ArrowForwardIosIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Eggs" />
-                </ListItemButton>
+                {postIngridients.split("\n").map((ingridient) => (
+                    <ListItemButton key={ingridient}>
+                        <ListItemIcon>
+                            <CircleIcon sx={{ color: "#000" }} />
+                        </ListItemIcon>
+                        <ListItemText primary={ingridient} />
+                    </ListItemButton>
+                ))}
             </List>
             <Typography variant="body1" align="center" m={2}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum
-                exercitationem minus aspernatur vero mollitia. Voluptates ipsum
-                neque id magni amet quam vitae tempora, distinctio ullam,
-                voluptate odit. Alias, fugiat pariatur!
-            </Typography>
-            <Typography
-                variant="h5"
-                color={"white"}
-                bgcolor={"black"}
-                align="center"
-                mt={4}
-            >
-                You may also like
+                {blogDetails.contentTwo}
             </Typography>
         </Container>
     );

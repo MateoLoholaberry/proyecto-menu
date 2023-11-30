@@ -1,13 +1,25 @@
-import { styled, Box, Typography, Stack } from "@mui/material";
-import appetizer from "../../assets/img/appetizer.jpg";
-import breakfast from "../../assets/img/breakfast.jpg";
-import breakfast2 from "../../assets/img/breakfast2.jpg";
-import dessert from "../../assets/img/dessert.jpg";
-import dinner from "../../assets/img/dinner.jpg";
-import vegan from "../../assets/img/vegan.jpg";
-import nachos from "../../assets/img/nachos.jpg";
+import { styled, Box, Typography, Stack, Link } from "@mui/material";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export const Category = () => {
+    const [category, setCategory] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await axios.get(
+                    `${import.meta.env.VITE_API_URL}/api/category/`
+                );
+                setCategory(res.data);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
     const StyledCard = styled(Box)(({ theme }) => ({
         display: "flex",
         justifyContent: "center",
@@ -56,48 +68,20 @@ export const Category = () => {
                 justifyContent: { xs: "start", md: "center" },
             }}
         >
-            <CardBox>
-                <StyledCard
-                    sx={{ backgroundImage: `url(${appetizer})` }}
-                ></StyledCard>
-                <StyledTypography>Appetizer</StyledTypography>
-            </CardBox>
-            <CardBox>
-                <StyledCard
-                    sx={{ backgroundImage: `url(${breakfast})` }}
-                ></StyledCard>
-                <StyledTypography>Breakfast</StyledTypography>
-            </CardBox>
-            <CardBox>
-                <StyledCard
-                    sx={{ backgroundImage: `url(${nachos})` }}
-                ></StyledCard>
-                <StyledTypography>Nachos</StyledTypography>
-            </CardBox>
-            <CardBox>
-                <StyledCard
-                    sx={{ backgroundImage: `url(${dessert})` }}
-                ></StyledCard>
-                <StyledTypography>Dessert</StyledTypography>
-            </CardBox>
-            <CardBox>
-                <StyledCard
-                    sx={{ backgroundImage: `url(${dinner})` }}
-                ></StyledCard>
-                <StyledTypography>Dinner</StyledTypography>
-            </CardBox>
-            <CardBox>
-                <StyledCard
-                    sx={{ backgroundImage: `url(${breakfast2})` }}
-                ></StyledCard>
-                <StyledTypography>Healthy</StyledTypography>
-            </CardBox>
-            <CardBox>
-                <StyledCard
-                    sx={{ backgroundImage: `url(${vegan})` }}
-                ></StyledCard>
-                <StyledTypography>Vegan</StyledTypography>
-            </CardBox>
+            {category.map((cat) => (
+                <Link
+                    key={cat.id}
+                    href={`/category/${cat.id}`}
+                    underline="none"
+                >
+                    <CardBox>
+                        <StyledCard
+                            sx={{ backgroundImage: `url(${cat.image})` }}
+                        ></StyledCard>
+                        <StyledTypography>{cat.name}</StyledTypography>
+                    </CardBox>
+                </Link>
+            ))}
         </Stack>
     );
 };

@@ -1,5 +1,4 @@
 import { Box, Container, Stack } from "@mui/material";
-import React from "react";
 import { Post } from "../post/Post";
 import { Rightbar } from "../rightBar/Rightbar";
 import { Hero } from "../hero/Hero";
@@ -15,7 +14,7 @@ export const Main = () => {
                     <Box flex={3}>
                         <Post></Post>
                     </Box>
-                    <Box flex={1} display={{ xs: "none", md: "block" }}>
+                    <Box flex={1} display={{ xs: "none", lg: "block" }}>
                         <Rightbar />
                     </Box>
                 </Stack>

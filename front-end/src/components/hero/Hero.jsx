@@ -17,7 +17,6 @@ export const Hero = () => {
         [theme.breakpoints.down("md")]: {
             height: 200,
         },
-        cursor: "pointer",
         "&:hover": {
             opacity: 0.8,
             boxSizing: "borderBox",
@@ -47,28 +46,28 @@ export const Hero = () => {
                 <Grid item xs={6} md={3}>
                     <StyledCard sx={{ backgroundImage: `url(${burger})` }}>
                         <StyledWrapper>
-                            <StyledTypography>Burgers</StyledTypography>
+                            <StyledTypography>Hamburguesas</StyledTypography>
                         </StyledWrapper>
                     </StyledCard>
                 </Grid>
                 <Grid item xs={6} md={3}>
                     <StyledCard sx={{ backgroundImage: `url(${meat})` }}>
                         <StyledWrapper>
-                            <StyledTypography>Meat</StyledTypography>
+                            <StyledTypography>Carnes</StyledTypography>
                         </StyledWrapper>
                     </StyledCard>
                 </Grid>
                 <Grid item xs={6} md={3}>
                     <StyledCard sx={{ backgroundImage: `url(${salad})` }}>
                         <StyledWrapper>
-                            <StyledTypography>Salad</StyledTypography>
+                            <StyledTypography>Ensalada</StyledTypography>
                         </StyledWrapper>
                     </StyledCard>
                 </Grid>
                 <Grid item xs={6} md={3}>
                     <StyledCard sx={{ backgroundImage: `url(${drinks})` }}>
                         <StyledWrapper>
-                            <StyledTypography>Drinks</StyledTypography>
+                            <StyledTypography>Bebidas</StyledTypography>
                         </StyledWrapper>
                     </StyledCard>
                 </Grid>

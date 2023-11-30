@@ -1,18 +1,17 @@
-import React from "react";
 import { Box, CardMedia, Link, Typography } from "@mui/material";
 import chef from "../../assets/img/chef.jpg";
 
 export const Rightbar = () => {
     return (
         <Box sx={{ padding: 2 }}>
-            <Typography variant="h5" align="center">
-                Hey I am Brenda
+            <Typography variant="h5" align="center" mb={1}>
+                ¡Hola, soy José!
             </Typography>
             <CardMedia
                 component={"img"}
                 height="300"
                 image={chef}
-                alt="Burger image"
+                alt="Chef image"
                 sx={{
                     width: "400px",
                     cursor: "pointer",

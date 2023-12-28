@@ -6,8 +6,8 @@ import { Main } from "./components/main/Main";
 import { Footer } from "./components/footer/Footer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { DetailsPage } from "./components/detailsPage/DetailsPage";
-import { CatBasedPost } from "./components/categoryList/catBasedPost";
-import { RecipeList } from "./components/recipeList/recipeList";
+import { CatBasedPost } from "./components/categoryList/CatBasedPost";
+import { RecipeList } from "./components/recipeList/RecipeList";
 
 export const App = () => {
     return (
